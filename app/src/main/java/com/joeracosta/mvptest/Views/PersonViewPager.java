@@ -24,7 +24,6 @@ public class PersonViewPager extends ViewPager {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-
         BusProvider.getInstance().register(this);
 
         //make internet call if no data
