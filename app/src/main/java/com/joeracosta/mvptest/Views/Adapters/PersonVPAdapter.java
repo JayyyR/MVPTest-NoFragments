@@ -30,7 +30,7 @@ public class PersonVPAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         String eyeColor = DataAccess.getInstance().getColorKeys().get(position);
         ArrayList<Contact> contactsByColor = DataAccess.getInstance().getContactsByEyeColor().get(eyeColor);
-        ContactPage contactPage = new ContactPage(_context, position + 1, eyeColor, contactsByColor);
+        ContactPage contactPage = new ContactPage(_context, contactsByColor);
         container.addView(contactPage);
         return contactPage;
     }
@@ -47,6 +47,6 @@ public class PersonVPAdapter extends PagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return String.valueOf(position + 1);
+        return DataAccess.getInstance().getColorKeys().get(position);
     }
 }

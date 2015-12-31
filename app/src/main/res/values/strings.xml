@@ -4,4 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="jump_to_vp">Jump to ViewPager</string>
+    <string name="loading">Loading...</string>
+    <string name="gender_label">Gender:\u0020</string>
+    <string name="fruit_label">Favorite Fruit:\u0020</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.joeracosta.mvptest.Views;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -8,6 +10,7 @@ import android.widget.TextView;
 
 import com.joeracosta.mvptest.Models.Contact;
 import com.joeracosta.mvptest.R;
+import com.joeracosta.mvptest.Views.Adapters.ContactRecylerAdapter;
 
 import java.util.ArrayList;
 
@@ -16,33 +19,36 @@ import java.util.ArrayList;
  */
 public class ContactPage extends LinearLayout {
 
-    TextView testNum;
-    int testInt;
+    RecyclerView _recyclerView;
+    ArrayList<Contact> contacts;
 
-    public ContactPage(Context context, int test, String eyeColor, ArrayList<Contact> contacts) {
+
+    public ContactPage(Context context, ArrayList<Contact> contacts) {
         super(context);
-        testInt = test;
-        init();
+        init(contacts);
     }
 
-    public ContactPage(Context context, AttributeSet attrs) {
+    public ContactPage(Context context, AttributeSet attrs, ArrayList<Contact> contacts) {
         super(context, attrs);
-        init();
+        init(contacts);
     }
 
-    public ContactPage(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ContactPage(Context context, AttributeSet attrs, int defStyleAttr, ArrayList<Contact> contacts) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(contacts);
     }
 
-    private void init() {
+    private void init(ArrayList<Contact> contacts) {
         inflate(getContext(), R.layout.contact_page_view, this);
+        this.contacts = contacts;
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        testNum = (TextView) findViewById(R.id.test_num);
-        testNum.setText(String.valueOf(testInt));
+
+        _recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        _recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        _recyclerView.setAdapter(new ContactRecylerAdapter(contacts));
     }
 }
