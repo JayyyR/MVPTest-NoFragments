@@ -6,4 +6,5 @@ Playing around with creating an app with no fragments and following Model View P
 Some inspiration:
 
 https://corner.squareup.com/2014/10/advocating-against-android-fragments.html
+
 http://antonioleiva.com/mvp-android/
