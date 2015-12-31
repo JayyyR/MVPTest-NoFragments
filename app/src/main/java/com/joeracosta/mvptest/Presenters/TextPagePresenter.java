@@ -5,7 +5,7 @@ import com.joeracosta.mvptest.Views.TextPageView;
 /**
  * Created by Joe on 12/30/2015.
  */
-public class TextPagePresenter {
+public class TextPagePresenter implements ViewPresenter{
 
 
     private TextPageView _view;
@@ -16,5 +16,15 @@ public class TextPagePresenter {
 
     public void buttonPressed(){
         _view.jumpToContacts();
+    }
+
+    @Override
+    public void viewAdded() {
+
+    }
+
+    @Override
+    public void viewRemoved() {
+
     }
 }
