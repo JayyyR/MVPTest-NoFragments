@@ -5,7 +5,11 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.joeracosta.mvptest.Models.Contact;
+import com.joeracosta.mvptest.Persistent.DataAccess;
 import com.joeracosta.mvptest.Views.ContactPage;
+
+import java.util.ArrayList;
 
 /**
  * Created by Joe on 12/30/2015.
@@ -19,12 +23,14 @@ public class PersonVPAdapter extends PagerAdapter {
     }
     @Override
     public int getCount() {
-        return 3;
+        return DataAccess.getInstance().getContactsByEyeColor().size();
     }
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        ContactPage contactPage = new ContactPage(_context, position + 1);
+        String eyeColor = DataAccess.getInstance().getColorKeys().get(position);
+        ArrayList<Contact> contactsByColor = DataAccess.getInstance().getContactsByEyeColor().get(eyeColor);
+        ContactPage contactPage = new ContactPage(_context, position + 1, eyeColor, contactsByColor);
         container.addView(contactPage);
         return contactPage;
     }

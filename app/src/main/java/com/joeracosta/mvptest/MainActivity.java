@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.joeracosta.mvptest.Persistent.DataAccess;
+import com.joeracosta.mvptest.Persistent.MVPApplication;
 import com.joeracosta.mvptest.Views.Container;
 import com.joeracosta.mvptest.Views.SinglePaneContainer;
 
@@ -15,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         container = (SinglePaneContainer) findViewById(R.id.container);
+        DataAccess.setApplication((MVPApplication)getApplication());
     }
 
     public Container getContainer() {

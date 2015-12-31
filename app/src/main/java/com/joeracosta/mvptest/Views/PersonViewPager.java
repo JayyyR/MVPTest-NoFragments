@@ -5,8 +5,12 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 
 import com.joeracosta.mvptest.MainActivity;
+import com.joeracosta.mvptest.Models.Contact;
 import com.joeracosta.mvptest.Presenters.PersonViewPagerPresenter;
 import com.joeracosta.mvptest.Views.Adapters.PersonVPAdapter;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * Created by Joe on 12/30/2015.

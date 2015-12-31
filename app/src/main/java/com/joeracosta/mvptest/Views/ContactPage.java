@@ -6,7 +6,10 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.joeracosta.mvptest.Models.Contact;
 import com.joeracosta.mvptest.R;
+
+import java.util.ArrayList;
 
 /**
  * Created by Joe on 12/30/2015.
@@ -16,7 +19,7 @@ public class ContactPage extends LinearLayout {
     TextView testNum;
     int testInt;
 
-    public ContactPage(Context context, int test) {
+    public ContactPage(Context context, int test, String eyeColor, ArrayList<Contact> contacts) {
         super(context);
         testInt = test;
         init();

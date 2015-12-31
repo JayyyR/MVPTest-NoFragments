@@ -6,6 +6,7 @@ import com.joeracosta.mvptest.Models.Contact;
 import com.joeracosta.mvptest.Network.LoadContacts;
 import com.joeracosta.mvptest.OttoEvents.LoadContactsFinishedEvent;
 import com.joeracosta.mvptest.Persistent.BusProvider;
+import com.joeracosta.mvptest.Persistent.DataAccess;
 import com.joeracosta.mvptest.Views.PersonViewPager;
 import com.squareup.otto.Subscribe;
 
@@ -28,9 +29,13 @@ public class PersonViewPagerPresenter implements ViewPresenter {
     @Subscribe
     public void onLoadContactsFinishedEvent(LoadContactsFinishedEvent event){
         Gson gson = new Gson();
-
         Type collectionType = new TypeToken<Collection<Contact>>(){}.getType();
         ArrayList<Contact> contacts = gson.fromJson(event.response, collectionType);
+
+        for (Contact c : contacts){
+            DataAccess.getInstance().addContact(c);
+        }
+
         _view.dataLoaded();
     }
 
