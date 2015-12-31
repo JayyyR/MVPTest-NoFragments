@@ -1,20 +1,40 @@
 package com.joeracosta.mvptest.Persistent;
 
 import android.app.Application;
+import android.view.View;
 
 import com.joeracosta.mvptest.Models.Contact;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Stack;
 
 /**
  * Created by Joe on 12/30/2015.
  */
 public class MVPApplication extends Application {
 
-    private HashMap<String, ArrayList<Contact>> _contactsByEyeColor;
+    private Stack<View> _backStack = new Stack<>();
 
-    private ArrayList<String> colorKeys;
+    private HashMap<String, ArrayList<Contact>> _contactsByEyeColor = new HashMap<>();
+
+    private ArrayList<String> colorKeys = new ArrayList<>();
+
+    public void pushToStack(View view){
+        _backStack.push(view);
+    }
+
+    public boolean isBackStackEmpty(){
+        return _backStack.isEmpty();
+    }
+
+    public View peekAtTopOfStack(){
+        return _backStack.peek();
+    }
+
+    public View popFromBackStack(){
+       return _backStack.pop();
+    }
 
     public ArrayList<String> getColorKeys(){
         return colorKeys;
@@ -25,11 +45,7 @@ public class MVPApplication extends Application {
         return _contactsByEyeColor;
     }
 
-
     public void addContact(Contact contact){
-        if (_contactsByEyeColor == null){
-            _contactsByEyeColor = new HashMap<>();
-        }
 
         String eyeColor = contact.getEyeColor();
         if (_contactsByEyeColor.containsKey(eyeColor)){
@@ -40,11 +56,7 @@ public class MVPApplication extends Application {
             newContactArray.add(contact);
             _contactsByEyeColor.put(eyeColor, newContactArray);
 
-            if (colorKeys == null){
-                colorKeys = new ArrayList<>();
-            }
             colorKeys.add(eyeColor);
         }
-
     }
 }

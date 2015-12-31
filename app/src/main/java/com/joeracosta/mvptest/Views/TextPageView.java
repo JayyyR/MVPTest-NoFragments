@@ -43,7 +43,7 @@ public class TextPageView extends LinearLayout {
 
     public void jumpToContacts(){
         _container = ((MainActivity)(getContext())).getContainer();
-        _container.setContent(new PersonViewPager(getContext()));
+        _container.replaceWithNewView(new PersonViewPager(getContext()));
     }
 
     private OnClickListener buttonListener = new OnClickListener() {

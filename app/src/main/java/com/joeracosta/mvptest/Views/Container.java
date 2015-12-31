@@ -13,6 +13,7 @@ public interface Container {
     void hideTabs();
 
     void setContent(View view);
+    void replaceWithNewView(View view);
     boolean onBackPressed();
 
 }

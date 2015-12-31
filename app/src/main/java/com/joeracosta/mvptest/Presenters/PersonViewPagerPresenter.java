@@ -44,8 +44,14 @@ public class PersonViewPagerPresenter implements ViewPresenter {
     public void viewAdded() {
         BusProvider.getInstance().register(this);
 
-        //make internet call if no data
-        LoadContacts.loadContacts();
+        if (DataAccess.getInstance().getContactsByEyeColor().isEmpty()) {
+            //make internet call if no data
+            LoadContacts.loadContacts();
+        }
+        else{
+            //data already exists
+            _view.dataLoaded();
+        }
     }
 
     @Override

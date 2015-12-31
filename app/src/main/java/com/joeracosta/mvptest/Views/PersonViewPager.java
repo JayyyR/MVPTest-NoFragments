@@ -4,16 +4,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.widget.ProgressBar;
-
 import com.joeracosta.mvptest.MainActivity;
-import com.joeracosta.mvptest.Models.Contact;
 import com.joeracosta.mvptest.Presenters.PersonViewPagerPresenter;
 import com.joeracosta.mvptest.R;
 import com.joeracosta.mvptest.Views.Adapters.PersonVPAdapter;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 /**
  * Created by Joe on 12/30/2015.
@@ -50,8 +45,8 @@ public class PersonViewPager extends ViewPager {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        _presenter.viewAdded();
         _loadingDialog = ProgressDialog.show(getContext(), getContext().getString(R.string.loading), "");
+        _presenter.viewAdded();
     }
 
     @Override
