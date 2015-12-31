@@ -15,9 +15,9 @@ import com.joeracosta.mvptest.R;
  */
 public class SinglePaneContainer extends FrameLayout implements Container{
 
-    FrameLayout contentView;
-    Toolbar toolBar;
-    TabLayout tabs;
+    private FrameLayout _contentView;
+    private Toolbar _toolBar;
+    private TabLayout tabs;
 
     public SinglePaneContainer(Context context) {
         super(context);
@@ -38,33 +38,44 @@ public class SinglePaneContainer extends FrameLayout implements Container{
         inflate(getContext(), R.layout.single_pane_container, this);
     }
 
-    @Override protected void onFinishInflate() {
-        super.onFinishInflate();
-        contentView = (FrameLayout) findViewById(R.id.content_view);
-        toolBar = (Toolbar) findViewById(R.id.toolbar);
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
+        _contentView = (FrameLayout) findViewById(R.id.content_view);
+        _toolBar = (Toolbar) findViewById(R.id.toolbar);
         tabs = (TabLayout) findViewById(R.id.tabs);
 
-        if (contentView.getChildAt(0) == null){
-            setContent(new TextPageView(getContext(), null));
+        if (_contentView.getChildAt(0) == null){
+            setContent(new TextPageView(getContext()));
         }
     }
 
+    @Override
     public void showTabs(ViewPager viewPager){
         tabs.setupWithViewPager(viewPager);
         tabs.setVisibility(VISIBLE);
     }
 
+    @Override
     public void hideTabs(){
         tabs.setVisibility(GONE);
     }
 
     @Override
     public void setContent(View view) {
-        contentView.removeAllViews();
-        contentView.addView(view);
+        _contentView.removeAllViews();
+        _contentView.addView(view);
     }
 
     public boolean onBackPressed() {
+
+        //if VP is showing, go back to textview page
+        if (_contentView.getChildAt(0) instanceof PersonViewPager){
+            setContent(new TextPageView(getContext(), null));
+            return true;
+        }
+
         return false;
     }
 }

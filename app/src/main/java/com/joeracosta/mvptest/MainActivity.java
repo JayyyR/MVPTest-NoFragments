@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.joeracosta.mvptest.Views.Container;
+import com.joeracosta.mvptest.Views.SinglePaneContainer;
 
 public class MainActivity extends AppCompatActivity {
     private Container container;
@@ -13,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        container = (Container) findViewById(R.id.container);
+        container = (SinglePaneContainer) findViewById(R.id.container);
     }
 
     public Container getContainer() {
