@@ -1,7 +1,7 @@
 # NoFragmentTest
 My attempt at creating an app with no fragments a la the Square theory
 
-Playing around with creating an app with no fragments and following Model View Presenter.
+Playing around with creating an app with no fragments and following Model View Presenter. Just playing around with structure. This code has memory leaks galore.
 
 Some inspiration:
 
